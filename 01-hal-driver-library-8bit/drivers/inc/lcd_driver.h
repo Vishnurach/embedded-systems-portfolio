@@ -1,7 +1,76 @@
-/* * File: lcd_driver.h
- * Author: Vishnu
- * Description: HAL for HD44780 LCD (4-bit/8-bit modes)
+/**
+ * @file lcd_driver.h
+ * @brief Device driver for HD44780-compatible 16x2 LCD (PIC16F876A).
+ *
+ * This module implements a device-specific LCD driver for interfacing
+ * HD44780-compatible 16x2 character LCDs with the PIC16F876A microcontroller
+ * using an 8-bit parallel data interface.
+ *
+ * The driver encapsulates all LCD control logic, timing requirements,
+ * and data bus handling, providing a clean API for the application layer.
+ *
+ * ---------------------------------------------------------------------------
+ * Supported Hardware
+ * ---------------------------------------------------------------------------
+ * - Microcontroller : PIC16F876A
+ * - Display         : 16x2 LCD (HD44780 compatible)
+ * - Interface Mode  : 8-bit parallel
+ *
+ * ---------------------------------------------------------------------------
+ * Software Architecture
+ * ---------------------------------------------------------------------------
+ * Application Layer:
+ *   - main.c
+ *     Calls LCD_* APIs to display data on the LCD.
+ *
+ * Driver Layer:
+ *   - lcd_driver.h  : Public driver interface (this file)
+ *   - lcd_driver.c  : Driver implementation
+ *
+ * Configuration:
+ *   - config.h
+ *     Defines LCD data and control pin mappings.
+ *
+ * ---------------------------------------------------------------------------
+ * Features
+ * ---------------------------------------------------------------------------
+ * - LCD initialization sequence
+ * - Command write interface
+ * - Character and string display functions
+ * - Clear separation between application and driver logic
+ *
+ * ---------------------------------------------------------------------------
+ * Usage Example
+ * ---------------------------------------------------------------------------
+ * @code
+ * #include "lcd_driver.h"
+ *
+ * int main(void)
+ * {
+ *     LCD_Init();
+ *     LCD_Clear();
+ *     LCD_SetCursor(0, 0);
+ *     LCD_Print("Hello World");
+ *
+ *     while (1);
+ * }
+ * @endcode
+ *
+ * ---------------------------------------------------------------------------
+ * Notes
+ * ---------------------------------------------------------------------------
+ * - This is a device driver, not a chip-agnostic HAL.
+ * - Timing constraints are handled internally in the driver implementation.
+ * - Designed for reuse in PIC16F876A-based applications.
+ *
+ * ---------------------------------------------------------------------------
+  * Author
+ * ---------------------------------------------------------------------------
+  * Vishnu Rach
+ * ---------------------------------------------------------------------------
  */
+
+
 
 #ifndef LCD_DRIVER_H
 #define LCD_DRIVER_H
