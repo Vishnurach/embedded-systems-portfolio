@@ -3,11 +3,6 @@
 
 #include "lcd_driver.h"
 
-// Define CPU Frequency for Delay (if not defined elsewhere)
-#ifndef _XTAL_FREQ
-#define _XTAL_FREQ 4000000
-#endif
-
 // Helper function to toggle Enable Pin
 // 'static' means this function is private to this file (Encapsulation)
 static void LCD_PulseEnable(void) {
