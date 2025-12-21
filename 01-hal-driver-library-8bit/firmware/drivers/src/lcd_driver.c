@@ -2,7 +2,7 @@
  */
 
 #include "lcd_driver.h"
-
+#include "config.h"
 // Helper function to toggle Enable Pin
 // 'static' means this function is private to this file (Encapsulation)
 static void LCD_PulseEnable(void) {
