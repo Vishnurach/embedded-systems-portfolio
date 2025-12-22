@@ -6,16 +6,9 @@
  * It is intended for driver verification only.
  */
 
-
+#include "config.h"        /* Device configuration & clock settings */
 #include <xc.h>
 #include "lcd_driver.h"
-
-// Configuration Bits (Ideally in a separate config_bits.h)
-#pragma config FOSC = HS
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config BOREN = OFF
-#pragma config LVP = OFF
 
 void main(void) {
     // 1. Hardware Initialization
