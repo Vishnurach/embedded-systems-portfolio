@@ -104,3 +104,14 @@ void UART_ReceiveString(char *buffer, uint16_t max_len)
 
     buffer[index] = '\0';   /* Null-terminate string */
 }
+
+void UART_SendHex(unsigned char val) 
+{
+    // Convert Upper Nibble
+    unsigned char nibble = (val >> 4) & 0x0F;
+    UART_SendChar((nibble <= 9) ? (nibble + '0') : (nibble - 10 + 'A'));
+    
+    // Convert Lower Nibble
+    nibble = val & 0x0F;
+    UART_SendChar((nibble <= 9) ? (nibble + '0') : (nibble - 10 + 'A'));
+}
