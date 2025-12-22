@@ -23,8 +23,7 @@ void UART_Init(void);
 void UART_SendChar(uint8_t data);
 void UART_SendString(const char *str);
 uint8_t UART_ReceiveChar(void);
-
-/* Caller provides buffer and maximum length */
 void UART_ReceiveString(char *buffer, uint16_t max_len);
+void UART_SendHex(unsigned char val);
 
 #endif /* UART_DRIVER_H */
