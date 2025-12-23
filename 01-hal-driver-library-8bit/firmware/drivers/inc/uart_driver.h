@@ -25,5 +25,6 @@ void UART_SendString(const char *str);
 uint8_t UART_ReceiveChar(void);
 void UART_ReceiveString(char *buffer, uint16_t max_len);
 void UART_SendHex(unsigned char val);
+void UART_SendDec(unsigned int val);
 
 #endif /* UART_DRIVER_H */
