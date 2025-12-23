@@ -115,3 +115,24 @@ void UART_SendHex(unsigned char val)
     nibble = val & 0x0F;
     UART_SendChar((nibble <= 9) ? (nibble + '0') : (nibble - 10 + 'A'));
 }
+
+void UART_SendDec(unsigned int val)
+{
+    char buf[5];
+    char i = 0;
+
+    if (val == 0)
+    {
+        UART_SendChar('0');
+        return;
+    }
+
+    while (val > 0)
+    {
+        buf[i++] = (val % 10) + '0';
+        val /= 10;
+    }
+
+    while (i--)
+        UART_SendChar(buf[i]);
+}
