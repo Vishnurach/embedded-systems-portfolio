@@ -1,27 +1,24 @@
 /*
- * LCD Driver Test Harness
- *
- * This application validates the functionality of the HD44780
- * LCD device driver using a simple test setup.
- * It is intended for driver verification only.
+ * File        : main.c
+ * Description : Portfolio Project ? LCD HAL Demo
  */
 
-#include "config.h"        /* Device configuration & clock settings */
 #include <xc.h>
+#include "config.h"
 #include "lcd_driver.h"
 
-void main(void) {
-    // 1. Hardware Initialization
+void main(void)
+{
+    /* Initialize LCD (mode handled inside driver) */
     LCD_Init();
 
-    // 2. Application Logic
+    /* Display messages */
     LCD_SendString("Vishnu's HAL");
-    
-    LCD_SendCmd(0xC0); // Move to 2nd line (Address 0x40 + 0x80)
-    LCD_SendString("Portfolio Demo");
+    LCD_SetCursor(1, 0);
+    LCD_SendString("LCD 4-bit Demo");
 
-    while(1) {
-        // Main loop is now empty or free for other tasks
-        // In a real system, we might blink a heartbeat LED here
+    while (1)
+    {
+        /* Super loop */
     }
 }
