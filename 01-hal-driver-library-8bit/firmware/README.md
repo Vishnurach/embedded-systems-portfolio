@@ -30,6 +30,8 @@ The goal of this repository is to demonstrate **clean driver design**, **hardwar
 ---
 
 ## 📁 Repository Structure
+
+```
 firmware/
 ├── drivers/
 │   ├── inc/        → Public HAL interfaces (.h)
@@ -41,6 +43,8 @@ firmware/
 │
 ├── main.c          → Central test workbench (preprocessor selectable)
 └── config.h        → MCU configuration & clock settings
+```
+
 
 ---
 
