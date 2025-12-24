@@ -5,9 +5,9 @@
 
 #include <xc.h>
 #include <stdint.h>
-#include "config.h"
-#include "spi_driver.h"
-#include "uart_driver.h" // <--- Uses your uploaded driver
+#include "../config.h"
+#include "../drivers/inc/spi_driver.h"
+#include "../drivers/inc/uart_driver.h"
 
 /* Shared state variables */
 volatile uint8_t system_state = 0;

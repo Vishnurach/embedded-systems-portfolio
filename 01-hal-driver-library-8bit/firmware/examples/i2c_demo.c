@@ -11,9 +11,9 @@
 #include <xc.h>
 #include <stdio.h>
 #include <string.h>
-#include "config.h"
-#include "i2c_driver.h"
-#include "uart_driver.h"
+#include "../config.h"
+#include "../drivers/inc/i2c_driver.h"
+#include "../drivers/inc/uart_driver.h"
 
 void main() 
 {

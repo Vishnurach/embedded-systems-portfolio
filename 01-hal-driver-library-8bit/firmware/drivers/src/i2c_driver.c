@@ -5,8 +5,8 @@
  * Clock       : 4 MHz (Calculated for 100kHz I2C Baud)
  */
 
-#include "i2c_driver.h"
-#include "config.h" 
+#include "../inc/i2c_driver.h"
+#include "../../config.h"
 
 void I2C_Init(void)
 {
@@ -15,7 +15,7 @@ void I2C_Init(void)
     TRISC4 = 1;      // RC4 = SDA (Input for I2C master)
     
     // 2. Configure I2C Module
-    SSPSTAT = 0x80;  // SMP=1: Slew rate disabled (Standard Speed 100kHz)
+    SSPSTAT = 0x80;  // Standard Speed 100kHz
     SSPCON = 0x28;   // SSPEN=1: Enable MSSP, SSPM=1000: I2C Master mode
     
     // 3. Set Baud Rate

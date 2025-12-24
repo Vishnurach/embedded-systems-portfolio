@@ -4,7 +4,8 @@
  * @brief   SPI Driver Implementation
  */
 
-#include "spi_driver.h"
+#include "../inc/spi_driver.h"
+#include "../../config.h"
 
 /* ================= Pin Mapping ================= */
 /* Define pins here for easy porting to other PICs */
@@ -55,4 +56,16 @@ void SPI_Wait(void)
     /* Wait for Interrupt Flag (Transaction Complete) */
     while(SSPIF == 0); 
     SSPIF = 0;         
+}
+
+uint8_t SPI_Read(void)
+{
+    return SSPBUF; /* Return the data in the buffer */
+}
+
+uint8_t SPI_Exchange(uint8_t data)
+{
+    SPI_Write(data);   /* Load buffer to start transmission */
+    SPI_Wait();        /* Wait for interrupt flag */
+    return SPI_Read(); /* Return the received data */
 }

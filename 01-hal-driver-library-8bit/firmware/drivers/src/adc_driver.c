@@ -9,8 +9,8 @@
  *  - Supports AN0?AN4
  */
 
-#include "adc_driver.h"
-#include "config.h"
+#include "../inc/uart_driver.h"
+#include "../../config.h"
 
 /*
  * Function    : ADC_init

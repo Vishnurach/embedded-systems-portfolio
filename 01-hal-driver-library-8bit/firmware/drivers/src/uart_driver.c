@@ -4,7 +4,8 @@
  * Toolchain   : XC8
  */
 
-#include "uart_driver.h"
+#include "../inc/uart_driver.h"
+#include "../../config.h"
 #include <stddef.h>
 
 /* ================= Initialization ================= */

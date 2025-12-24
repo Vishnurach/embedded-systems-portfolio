@@ -5,7 +5,8 @@
  * Toolchain   : XC8
  */
 
-#include "pwm_driver.h"
+#include "../inc/pwm_driver.h"
+#include "../../config.h"
 
 void PWM_Init(void)
 {

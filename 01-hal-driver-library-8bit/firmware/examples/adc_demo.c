@@ -7,9 +7,9 @@
 
 #include <xc.h>
 #include <stdio.h>
-#include "config.h"
-#include "uart_driver.h"
-#include "adc_driver.h"
+#include "../config.h"
+#include "../drivers/inc/uart_driver.h"
+#include "../drivers/inc/adc_driver.h"
 
 /* Update for adc_demo.c main loop */
 void main(void)

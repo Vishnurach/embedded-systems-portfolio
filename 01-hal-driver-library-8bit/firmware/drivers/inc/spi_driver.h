@@ -12,38 +12,24 @@
 #include <stdint.h>
 
 /* ================= Configuration Macros ================= */
+#define SPI_ENABLE          0x20  /* SSPEN bit */
+#define SPI_MASTER_FOSC4    0x00  /* FOSC/4 Speed */
+#define SPI_SLAVE_SS_DIS    0x05  /* Slave mode, SS disabled */
 
-/* SSPCON Register Bits */
-#define SPI_ENABLE          0x20  // SSPEN: Synchronous Serial Port Enable
-#define SPI_MASTER_FOSC4    0x00  // Master mode, clock = Fosc/4
-#define SPI_SLAVE_SS_DIS    0x05  // Slave mode, SS pin disabled (0101)
-
-/* ================= Initialization APIs ================= */
-
-/**
- * @brief Initialize SPI as Master
- * @note  Configures SCK/SDO as output, SDI as input. Fosc/4.
- */
+/* ================= Function Prototypes ================= */
 void SPI_Init_Master(void);
-
-/**
- * @brief Initialize SPI as Slave
- * @note  Configures SCK/SDI as input. SS pin is DISABLED (3-wire mode).
- */
 void SPI_Init_Slave(void);
 
-/* ================= Operation APIs ================= */
-
 /**
- * @brief Load data into SSPBUF (Non-blocking write)
- * @param data Byte to transmit
+ * @brief Sends a byte and returns the received byte (Full Duplex)
+ * @param data Byte to send
+ * @return Byte received
  */
+uint8_t SPI_Exchange(uint8_t data);
+
+/* Legacy/Helper functions */
 void SPI_Write(uint8_t data);
-
-/**
- * @brief Wait for transaction to complete (Blocking)
- * @note  Polls SSPIF and clears it upon completion.
- */
 void SPI_Wait(void);
+uint8_t SPI_Read(void);
 
-#endif /* SPI_DRIVER_H */
+#endif

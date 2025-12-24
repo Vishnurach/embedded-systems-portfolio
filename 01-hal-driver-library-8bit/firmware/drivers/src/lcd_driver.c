@@ -4,8 +4,8 @@
  */
 
 #include <xc.h>
-#include "config.h"      /* Only for _XTAL_FREQ */
-#include "lcd_driver.h"
+#include "../../config.h"
+#include "../inc/lcd_driver.h"
 
 /* ================= PIN MAPPING =================
  *

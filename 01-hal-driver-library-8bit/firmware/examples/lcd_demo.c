@@ -4,8 +4,8 @@
  */
 
 #include <xc.h>
-#include "config.h"
-#include "lcd_driver.h"
+#include "../config.h"
+#include "../drivers/inc/lcd_driver.h"
 
 void main(void)
 {

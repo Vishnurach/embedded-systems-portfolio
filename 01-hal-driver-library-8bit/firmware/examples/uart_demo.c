@@ -4,9 +4,9 @@
  * Toolchain   : XC8
  */
 
-#include "config.h"        /* Device configuration & clock settings */
+#include "../config.h"
 #include <xc.h>
-#include "uart_driver.h"
+#include "../drivers/inc/uart_driver.h"
 
 void main(void)
 {

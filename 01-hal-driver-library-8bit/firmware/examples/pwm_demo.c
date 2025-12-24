@@ -7,10 +7,10 @@
 #include <xc.h>
 #include <stdint.h>
 #include <stdio.h>
-#include "config.h"
-#include "uart_driver.h" 
-#include "adc_driver.h" 
-#include "pwm_driver.h" 
+#include "../config.h"
+#include "../drivers/inc/uart_driver.h"
+#include "../drivers/inc/adc_driver.h"
+#include "../drivers/inc/pwm_driver.h"
 
 void main(void) 
 {
