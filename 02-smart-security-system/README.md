@@ -1,86 +1,81 @@
-Smart Security & Monitoring System
+# Smart Security & Monitoring System
 
-Target MCU: LPC2148 (ARM7TDMI-S)
+**Target MCU:** LPC2148 (ARM7TDMI-S)
 
-📌 Overview
+## 📌 Overview
 
 This project implements a Smart Security & Monitoring System on the LPC2148 microcontroller, integrating authentication, user interaction, temperature monitoring, and PWM-based fan control.
 
 The firmware is designed with a modular driver architecture and focuses on deterministic system-level behavior, making it suitable for both simulation-based validation and real hardware deployment.
 
-🔐 Security Features
+---
 
-UART-based password authentication
+## 🔐 Security Features
 
-Password change via UART interface
+* **UART-based password authentication**
+* **Password change via UART interface**
+* **Lockout delay after multiple failed attempts**
+* **Secure access before enabling system operation**
 
-Lockout delay after multiple failed attempts
+---
 
-Secure access before enabling system operation
+## 🧭 User Interface
 
-🧭 User Interface
+* **16×2 LCD (4-bit mode)**
+* **Matrix keypad for:**
+    * Menu navigation
+    * Temperature simulation
+    * Threshold configuration
+* **Menu-driven operation:**
+    * Monitor Mode
+    * Settings Mode
 
-16×2 LCD (4-bit mode)
+---
 
-Matrix keypad for:
+## 🌡️ Temperature Monitoring (Simulation-Aware Design)
 
-Menu navigation
-
-Temperature simulation
-
-Threshold configuration
-
-Menu-driven operation:
-
-Monitor Mode
-
-Settings Mode
-
-🌡️ Temperature Monitoring (Simulation-Aware Design)
-
-Temperature value simulated using keypad + / - controls
-
-Adjustable temperature threshold via Settings menu
-
-Clear abstraction between sensor input and application logic
+* **Temperature value simulated using keypad + / - controls**
+* **Adjustable temperature threshold via Settings menu**
+* **Clear abstraction between sensor input and application logic**
 
 This approach enables repeatable and deterministic testing of control logic and user interaction in simulation environments.
 
-🌀 Fan / Motor Control (PWM)
+---
 
-PWM-based motor (fan) control using LPC2148 PWM module
+## 🌀 Fan / Motor Control (PWM)
 
-Motor turns ON automatically when temperature exceeds threshold
+* **PWM-based motor (fan) control using LPC2148 PWM module**
+* **Motor turns ON automatically when temperature exceeds threshold**
+* **Motor turns OFF when temperature returns to normal**
+* **Safety shutdown ensures motor is stopped when exiting Monitor Mode**
 
-Motor turns OFF when temperature returns to normal
+---
 
-Safety shutdown ensures motor is stopped when exiting Monitor Mode
+## ⏱️ Over-Temperature Stopwatch
 
-⏱️ Over-Temperature Stopwatch
-
-Tracks continuous time spent above temperature threshold
-
-Non-blocking implementation using loop tick counting
-
-Live duration updates via UART
-
-Timer resets automatically when temperature normalizes
+* **Tracks continuous time spent above temperature threshold**
+* **Non-blocking implementation using loop tick counting**
+* **Live duration updates via UART**
+* **Timer resets automatically when temperature normalizes**
 
 This models real-world thermal fault duration monitoring.
 
-📡 UART Diagnostics
+---
 
-Authentication prompts and feedback
+## 📡 UART Diagnostics
 
-Password change interface
+* **Authentication prompts and feedback**
+* **Password change interface**
+* **Monitor mode status messages**
+* **Live over-temperature alert timing**
 
-Monitor mode status messages
+---
 
-Live over-temperature alert timing
+## 🧠 System Architecture
 
-🧠 System Architecture
+```text
 +----------------------------+
-|   Application Layer        |
+|    Application Layer       |
 |  Menus • Logic • Control   |
 +-------------+--------------+
               |
@@ -93,59 +88,63 @@ Live over-temperature alert timing
 +-------------v--------------+
 |        LPC2148 MCU         |
 +----------------------------+
+```
 
-🧪 Simulation Preview
+---
+
+## 🧪 Simulation Preview
 
 The following screenshot shows the complete system in operation, including:
+* LPC2148 MCU
+* LCD interface
+* Keypad input
+* UART terminal output
+* Fan (motor) and LM35 components (visual reference)
 
-LPC2148 MCU
+> **Note:** The simulation is provided as a visual and functional reference. The Proteus project file is intentionally not included to keep the repository firmware-focused and tool-independent.
 
-LCD interface
+![Simulation Schematic](docs/smart_security_schematic.png)
 
-Keypad input
+---
 
-UART terminal output
+## 🔌 Hardware Pinout
 
-Fan (motor) and LM35 components (visual reference)
+| Component | LPC2148 Pin | Function |
+| :--- | :--- | :--- |
+| **LCD Data** | `P0.4` – `P0.7` | 4-Bit Data Bus |
+| **LCD Control** | `P0.0` (RS), `P0.2` (EN) | Command / Data Selection |
+| **UART0** | `P0.8` (Tx), `P0.9` (Rx) | Serial Terminal (9600 Baud) |
+| **PWM Output** | `P0.21` (PWM5) | Motor Driver Control (Fan) |
+| **ADC Input** | `P0.28` (AD0.1) | LM35 Sensor Output |
+| **Keypad Rows** | `P1.16` – `P1.19` | Matrix Output |
+| **Keypad Columns** | `P1.20` – `P1.23` | Matrix Input |
 
-Note: The simulation is provided as a visual and functional reference.
-The Proteus project file is intentionally not included to keep the repository
-firmware-focused and tool-independent.
+---
 
-docs/smart_security_schematic.png
+## 🛠️ Build Instructions
 
-🔌 Hardware Pinout
-Component	LPC2148 Pin	Function
-LCD Data	P0.4 – P0.7	4-Bit Data Bus
-LCD Control	P0.0 (RS), P0.2 (EN)	Command / Data Selection
-UART0	P0.8 (Tx), P0.9 (Rx)	Serial Terminal (9600 Baud)
-PWM Output	P0.21 (PWM5)	Motor Driver Control (Fan)
-ADC Input	P0.28 (AD0.1)	LM35 Sensor Output
-Keypad Rows	P1.16 – P1.19	Matrix Output
-Keypad Columns	P1.20 – P1.23	Matrix Input
-🛠️ Build Instructions
+### 1. Environment Setup
+* **IDE:** Open the project in Keil uVision 5
+* **Target Device:** Select NXP → LPC2148
 
-IDE: Open the project in Keil uVision 5
+### 2. Configuration
+* **Clock Configuration:**
+    * External Oscillator: 12 MHz
+    * PLL configures System Clock to 60 MHz
 
-Target Device: Select NXP → LPC2148
+### 3. Compilation
+* **Action:** Click Rebuild
+* **Expected:** 0 Errors, 0 Warnings
 
-Clock Configuration:
+### 4. Load / Run
+* Flash the generated `.hex` file to hardware
+* Or load the `.hex` into the MCU properties in Proteus
 
-External Oscillator: 12 MHz
+---
 
-PLL configures System Clock to 60 MHz
+## 📁 Project Structure
 
-Compilation: Click Rebuild
-
-Expected: 0 Errors, 0 Warnings
-
-Load / Run:
-
-Flash the generated .hex file to hardware
-
-Or load the .hex into the MCU properties in Proteus
-
-📁 Project Structure
+```text
 smart-security-system/
 │
 ├── firmware/
@@ -161,36 +160,23 @@ smart-security-system/
 │   └── smart_security_schematic.png
 │
 └── README.md
+```
 
-⚙️ Hardware Target Summary
+---
 
-MCU: LPC2148 (ARM7TDMI-S)
+## ⚙️ Hardware Target Summary
 
-System Clock: 60 MHz
+* **MCU:** LPC2148 (ARM7TDMI-S)
+* **System Clock:** 60 MHz
+* **LCD:** HD44780 compatible (4-bit mode)
+* **Input:** Matrix keypad
+* **Motor:** DC motor via PWM
+* **UART:** 9600 baud, 8N1
+* **Sensor:** LM35 (hardware deployment)
 
-LCD: HD44780 compatible (4-bit mode)
+---
 
-Input: Matrix keypad
+## 👤 Author
 
-Motor: DC motor via PWM
-
-UART: 9600 baud, 8N1
-
-Sensor: LM35 (hardware deployment)
-
-🚀 Future Enhancements
-
-Enable real ADC-based temperature sensing on hardware
-
-Add EEPROM / Flash password storage
-
-Integrate RTC-based event logging
-
-Add alarm buzzer or relay output
-
-Introduce low-power operating modes
-
-👤 Author
-
-Vishnu Rach K R
-Embedded Systems • ARM • Firmware Design
+**Vishnu Rach K R**
+*Embedded Systems • ARM • Firmware Design*
