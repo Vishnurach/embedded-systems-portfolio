@@ -92,21 +92,6 @@ This models real-world thermal fault duration monitoring.
 
 ---
 
-## 🧪 Simulation Preview
-
-The following screenshot shows the complete system in operation, including:
-* LPC2148 MCU
-* LCD interface
-* Keypad input
-* UART terminal output
-* Fan (motor) and LM35 components (visual reference)
-
-> **Note:** The simulation is provided as a visual and functional reference. The Proteus project file is intentionally not included to keep the repository firmware-focused and tool-independent.
-
-![Simulation Schematic](docs/smart_security_schematic.png)
-
----
-
 ## 🔌 Hardware Pinout
 
 | Component | LPC2148 Pin | Function |
@@ -124,7 +109,7 @@ The following screenshot shows the complete system in operation, including:
 ## 🛠️ Build Instructions
 
 ### 1. Environment Setup
-* **IDE:** Open the project in Keil uVision 5
+* **IDE:** Open the project in Keil uVision 4
 * **Target Device:** Select NXP → LPC2148
 
 ### 2. Configuration
@@ -179,4 +164,6 @@ smart-security-system/
 ## 👤 Author
 
 **Vishnu Rach K R**
+
 *Embedded Systems • ARM • Firmware Design*
+
