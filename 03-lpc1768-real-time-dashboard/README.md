@@ -29,10 +29,6 @@ The Python dashboard communicates in **full-duplex mode**, enabling real-time mo
 * Real-time ADC sampling via simulated Keil registers
 * Temperature updates reflected instantly on the Python GUI
 
-| Phase 1: Idle (30 °C) | Phase 3: High Temp (50 °C) |
-| :---: | :---: |
-| Simulated ADC Input | Real-time Dashboard Update |
-
 ---
 
 ## 🚀 Key Features
@@ -93,6 +89,7 @@ The Python dashboard communicates in **full-duplex mode**, enabling real-time mo
 |        LPC1768 MCU          |
 |      ARM Cortex-M3          |
 +-----------------------------+
+```
 
 ## 🔌 Hardware Pin Configuration
 
@@ -128,6 +125,7 @@ Conversion logic:
 ```text
 Voltage (mV) = (ADC_Value × 3300) / 4095
 Temperature (°C) = Voltage / 10
+```
 
 ## 📡 UART Communication Protocol
 
@@ -159,7 +157,7 @@ UART receive is **interrupt-driven**, while transmit uses polling for simplicity
 
 ### 1. Firmware (Keil µVision)
 
-* **IDE:** Keil µVision 5
+* **IDE:** Keil µVision 4
 * **Target Device:** LPC1768
 * **XTAL:** 12 MHz
 * **Action:** Build (F7)
@@ -177,7 +175,7 @@ Update serial port inside `dashboard.py`:
 ```python
 SERIAL_PORT = "COM9"
 BAUD_RATE = 9600
-
+```
 ### 3. Simulation Mode (No Hardware Required)
 
 * Use **com0com** to create virtual ports (e.g., COM8 ↔ COM9)
@@ -185,7 +183,7 @@ BAUD_RATE = 9600
 ```text
 MODE COM8 9600,0,8,1
 ASSIGN COM8 <S0IN >S0OUT
-
+```
 Python dashboard connects to COM9
 
 ## 📁 Project Structure
@@ -205,6 +203,7 @@ LPC1768-Real-Time-Dashboard/
 │
 ├── screenshots/            # Demo & simulation images
 └── README.md
+```
 
 ## 👤 Author
 
